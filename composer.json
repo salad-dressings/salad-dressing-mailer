@@ -1,0 +1,58 @@
+{
+    "name": "salad-dressing/mailer",
+    "license": "MIT",
+    "type": "salad-extension",
+    "autoload": {
+        "psr-4": {
+            "Salad\\Dressing\\Mailer\\": "src/"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "authors": [
+        {
+            "name": "King Villanueva",
+            "email": "mrkong.villanueva@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "extra": {
+        "salad-extension": {
+            "title": "Mailer",
+            "category": "feature",
+            "icon": "fas fa-envelope"
+        },
+        "resources": {
+            "files": [
+                "Controllers/admin/MailerController.php",
+                "Views/admin/mailer/index.twig",
+                "Migrations/CreateMailerTable.php"
+            ],
+            "migration": true,
+            "routes": [
+                {
+                    "salad_dressing_mailer": {
+                        "path": "/admin/mailer",
+                        "controller": "App\\Controllers\\Admin\\MailerController::index",
+                        "methods" : "[GET]"
+                    }
+                },
+                {
+                    "salad_dressing_mailer_submit": {
+                        "path": "/admin/mailer/submit",
+                        "controller": "App\\Controllers\\Admin\\MailerController::submit",
+                        "methods" : "[POST]"
+                    }
+                },
+                {
+                    "salad_dressing_mailer_test": {
+                        "path": "/admin/mailer/test",
+                        "controller": "App\\Controllers\\Admin\\MailerController::test",
+                        "methods" : "[POST]"
+                    }
+                }
+            ]
+        }
+    }
+}
