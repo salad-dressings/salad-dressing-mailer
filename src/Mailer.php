@@ -1,16 +1,27 @@
 <?php
 
-namespace Salad\Dressing;
+namespace Salad\Dressing\Mailer;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-class Mailer
+use Salad\Core\Application;
+use Salad\Dressing\Mailer\Models\Mailer;
+
+class Send
 {
+    protected $App;
     protected $mail;
 
     public function __construct()
     {
+        $this->App = Application::$app;
+        // $this->setConfig();
+    }
+
+    function setConfig() {
+
+        $stmt = $this->mailer->findById(1);
         $this->mail = new PHPMailer(true);
         
         $this->mail->isSMTP();
