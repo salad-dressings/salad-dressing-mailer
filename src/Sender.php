@@ -56,11 +56,6 @@ class Sender
         $this->mail->Body = $body;
     }
 
-    public function addAttachment($filePath, $fileName = '')
-    {
-        $this->mail->addAttachment($filePath, $fileName);
-    }
-
     public function send()
     {
         try {
