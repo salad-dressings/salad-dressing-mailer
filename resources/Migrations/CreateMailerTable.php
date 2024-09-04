@@ -10,7 +10,7 @@ class CreateMailerTable
             password VARCHAR(255),
             encryption VARCHAR(255),
             port VARCHAR(255),
-            address VARCHAR(255),
+            address VARCHAR(255)
         )");
     }
 
