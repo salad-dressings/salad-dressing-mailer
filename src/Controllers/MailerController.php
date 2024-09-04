@@ -1,25 +1,29 @@
 <?php
-namespace Salad\Dressing\Mailer\Controller;
+namespace Salad\Dressing\Mailer\Controllers;
 
 use Salad\Core\Application;
 use Salad\Core\Controller;
+use Salad\Core\View;
+
 
 class MailerController extends Controller
 {
     protected $App;
+    protected $view;
+
     public function __construct()
     {
         parent::__construct();   
+
         $this->App = Application::$app;
-        $userId = $this->App->session->get('user_id');
-        if(!$userId){
-            $this->App->response->redirect("/admin/login");
-        }
+        $this->view = new View;
+        $this->view->addViewPath( __DIR__ .'/../Views');
+        $this->view->setPostLogin();
     }
     
     public function index()
     {
-        $this->render('admin/dressing_mailer/index');
+        $this->view->render('dressing_mailer/index');
     }
     
     public function submit()
