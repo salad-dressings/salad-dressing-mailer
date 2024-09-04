@@ -28,6 +28,9 @@
             "migration": [
                 "CreateMailerTable.php"
             ]
+        },
+        "navigation": {
+            "admin": "/admin/mailer"
         }
     }
 }
