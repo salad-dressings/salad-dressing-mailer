@@ -8,31 +8,34 @@ use PHPMailer\PHPMailer\Exception;
 use Salad\Core\Application;
 use Salad\Dressing\Mailer\Models\Mailer;
 
-class Send
+class Sender
 {
     protected $App;
     protected $mail;
+    protected $mailer;
+    protected $sender;
 
     public function __construct()
     {
         $this->App = Application::$app;
-        // $this->setConfig();
+        $this->mailer = new Mailer;
+        $this->setConfig();
     }
 
     function setConfig() {
 
         $stmt = $this->mailer->findById(1);
+
         $this->mail = new PHPMailer(true);
         
         $this->mail->isSMTP();
-        $this->mail->Host = 'smtp.yourdomain.com'; // Set SMTP server
+        $this->mail->Host = $stmt['host'] ?? "";
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = 'your_email@yourdomain.com'; // SMTP username
-        $this->mail->Password = 'your_password'; // SMTP password
-        $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $this->mail->Port = 587;
-        
-        $this->mail->setFrom('no-reply@yourdomain.com', 'Your App Name');
+        $this->mail->Username = $stmt['username'] ?? "";
+        $this->mail->Password = $stmt['password'] ?? "";
+        $this->mail->SMTPSecure = $stmt['encryption'] ?? "";
+        $this->mail->Port = $stmt['port'] ?? "";
+        $this->mail->setFrom($stmt['address'] ?? "", $_ENV['SITE_TITLE'] ?? "");
     }
 
     public function addRecipient($email, $name = '')

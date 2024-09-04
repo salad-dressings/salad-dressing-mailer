@@ -6,12 +6,16 @@ use Salad\Core\Controller;
 use Salad\Core\View;
 
 use Salad\Dressing\Mailer\Models\Mailer;
-
+use Salad\Dressing\Mailer\Sender;
+use App\Models\User;
 
 class MailerController extends Controller
 {
     protected $App;
     protected $view;
+    protected $user;
+    protected $mailer;
+    protected $sender;
 
     public function __construct()
     {
@@ -19,10 +23,12 @@ class MailerController extends Controller
 
         $this->App = Application::$app;
         $this->view = new View;
+        $this->sender = new Sender;
+        $this->user = new User;
+        $this->mailer = new Mailer;
         $this->view->addViewPath( __DIR__ .'/../Views');
         $this->view->setPostLogin();
 
-        $this->mailer = new Mailer;
     }
     
     public function index()
@@ -84,7 +90,22 @@ class MailerController extends Controller
       
     public function test()
     {
-        $stmt = $this->mailer->findById(1);
+
+        $userId = $this->App->session->get('user_id');
+        $stmt = $this->user->findById($userId);
+        $this->sender->addRecipient($stmt['email']);
+        $this->sender->setSubject("SaldaStack Email Test");
+        $this->sender->setBody("This is a test email to confirm that your Salad Dressing Mailer configuration is working properly.");
+        $sent = $this->sender->send();
+
+        if($sent){
+            $this->App->session->setFlash("notification_success", "Test mail sent.");
+        } else {
+            $this->App->session->setFlash("notification_warning", "Sending failed.");
+
+        }
+        $this->App->response->redirect("/admin/mailer");
+        
     }
     
 }
