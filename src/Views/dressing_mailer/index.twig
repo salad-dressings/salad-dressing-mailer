@@ -58,12 +58,14 @@
         <button type="submit" class="btn btn-primary">Save Configuration</button>
       </div>
     </form>
-
-    <!-- Send Test Mail Button -->
-    <div class="card-body">
-      <h4>Send Test Mail</h4>
-      <p>This will send an email using the above configuration to your email {{ get_logged_email() }}.</p>
-        <a href="{{ '/admin/mailer/test' | base_url }}" class="btn btn-success">Send Email</a>
-    </div>
+  
+    {% if details.host != "" %}
+      <!-- Send Test Mail Button -->
+      <div class="card-body">
+        <h4>Send Test Mail</h4>
+        <p>This will send an email using the above configuration to your email {{ get_logged_email() }}.</p>
+          <a href="{{ '/admin/mailer/test' | base_url }}" class="btn btn-success">Send Email</a>
+      </div>
+    {% endif %}
   </section>
 {% endblock %}

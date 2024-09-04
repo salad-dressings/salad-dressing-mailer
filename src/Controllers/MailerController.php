@@ -23,7 +23,6 @@ class MailerController extends Controller
 
         $this->App = Application::$app;
         $this->view = new View;
-        $this->sender = new Sender;
         $this->user = new User;
         $this->mailer = new Mailer;
         $this->view->addViewPath( __DIR__ .'/../Views');
@@ -90,7 +89,7 @@ class MailerController extends Controller
       
     public function test()
     {
-
+        $this->sender = new Sender;
         $userId = $this->App->session->get('user_id');
         $stmt = $this->user->findById($userId);
         $this->sender->addRecipient($stmt['email']);
