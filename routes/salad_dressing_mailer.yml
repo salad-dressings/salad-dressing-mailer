@@ -1,15 +1,15 @@
 routes:
   salad_dressing_mailer:
     path: /admin/mailer
-    controller: App\Controllers\MailerController::index
+    controller: App\Controllers\Admin\MailerController::index
     methods: [GET]
 
   salad_dressing_mailer_submit:
     path: /admin/mailer/submit
-    controller: App\Controllers\MailerController::submit
+    controller: App\Controllers\Admin\MailerController::submit
     methods: [GET]
 
   salad_dressing_mailer_test:
     path: /admin/mailer/test
-    controller: App\Controllers\MailerController::test
+    controller: App\Controllers\Admin\MailerController::test
     methods: [GET]
