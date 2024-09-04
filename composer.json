@@ -1,5 +1,6 @@
 {
     "name": "salad-dressing/mailer",
+    "description": "SaladStack Mailer extension",
     "license": "MIT",
     "type": "salad-extension",
     "autoload": {
@@ -24,12 +25,9 @@
             "icon": "fas fa-envelope"
         },
         "resources": {
-            "files": [
-                "Controllers/admin/MailerController.php",
-                "Views/admin/mailer/index.twig",
-                "Migrations/CreateMailerTable.php"
+            "migration": [
+                "CreateMailerTable.php"
             ],
-            "migration": true,
             "routes": [
                 {
                     "salad_dressing_mailer": {
