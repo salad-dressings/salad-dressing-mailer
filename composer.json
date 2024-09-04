@@ -5,7 +5,8 @@
     "type": "salad-extension",
     "autoload": {
         "psr-4": {
-            "Salad\\Dressing\\Mailer\\": "src/"
+            "Salad\\Dressing\\Mailer\\": "src/",
+            "Salad\\Dressing\\Mailer\\Controller\\": "resources/Controller/"
         }
     },
     "require": {
