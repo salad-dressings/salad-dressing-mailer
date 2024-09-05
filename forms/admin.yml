@@ -1,0 +1,41 @@
+form:
+  title: "Mailer Confirguration"
+  description: "Configure the driver, settings and addresses your forum will use to send email."
+  table: "dressing_mailer"
+  type: single
+  fields:
+    - name: host
+      type: text
+      label: SMTP Server
+      placeholder: smtp.example.com
+      required: true
+    - name: port
+      type: text
+      label: Port
+      placeholder: 587
+      required: true
+    - name: username
+      type: text
+      label: Username
+      placeholder: email@example.com
+      required: true
+    - name: password
+      type: password
+      label: Password
+      placeholder: Password
+      required: true
+    - name: encryption
+      type: select
+      label: Encryption
+      placeholder: Encryption
+      required: true
+      options:
+        - value: ssl
+          label: SSL
+        - value: tls
+          label: TLS
+    - name: address
+      type: text
+      label: Sender Email
+      placeholder: Sender Email
+      required: true
