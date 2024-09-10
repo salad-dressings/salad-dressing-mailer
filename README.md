@@ -22,7 +22,7 @@ public function index()
 {
     $this->sender = new Sender;
     $this->sender->addRecipient("test@saladstack.com");
-    $this->sender->setSubject("SaldaStack Email Test");
+    $this->sender->setSubject("SaladStack Email Test");
     $this->sender->setBody("This is a test email.");
     if($this->sender->send()){
       echo "Email Sent!";
@@ -40,7 +40,7 @@ public function index()
 {
     $this->sender = new Sender;
     $this->sender->addRecipient("test@saladstack.com");
-    $this->sender->setSubject("SaldaStack Email Test");
+    $this->sender->setSubject("SaladStack Email Test");
     //adding true on the 2nd params will enable html body
     $this->sender->setBody("<h1>This is a test email.</h1>", true); 
     if($this->sender->send()){
